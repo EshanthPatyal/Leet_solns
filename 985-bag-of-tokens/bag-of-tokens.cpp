@@ -8,10 +8,10 @@ public:
         if(j==0){
             return power>=tokens[j]?1:0;
         }
+        if(j==-1||power<tokens[0]) return 0;
         int flag=false;
         int ret=0;
         while(i<j){
-            int a=i,b=j;
             //cout<<i<<" "<<j<<endl;
             if(score>0){
                 score--;
@@ -24,9 +24,7 @@ public:
                 i++;
 
             }
-            if(a==i && b==j){
-                break;
-            }
+
             ret=max(score,ret);
 
         }
