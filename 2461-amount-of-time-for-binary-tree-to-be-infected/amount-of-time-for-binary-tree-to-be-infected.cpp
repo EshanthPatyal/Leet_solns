@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    map<int,vector<int>> mp;
+    unordered_map<int,vector<int>> mp;
     void bst(TreeNode* root){
         if(!root)return;
             if(root->left!=NULL){
@@ -30,7 +30,7 @@ public:
         bst(root);
         queue<int> q;
         int curr_time=0;
-        set<int> s;
+        unordered_set<int> s;
         q.push(start);
         while(!q.empty()){
             curr_time++;
