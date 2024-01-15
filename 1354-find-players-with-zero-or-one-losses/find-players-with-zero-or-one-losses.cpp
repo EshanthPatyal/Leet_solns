@@ -1,8 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> findWinners(vector<vector<int>>& matches) {
-        map<int,int>mp1;
-        map<int,int>mp2;
+        unordered_map<int,int>mp1,mp2;
         set<int> v;
         vector<vector<int>> ret;
         vector<int> temp1,temp2;
