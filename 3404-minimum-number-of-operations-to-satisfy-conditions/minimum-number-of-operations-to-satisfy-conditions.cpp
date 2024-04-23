@@ -28,7 +28,10 @@ public:
             }
         }
         int out=INT_MAX;
-
-        return helper(v,dp,c-1,10,grid.size());
+        for(int i=0;i<=10;i++){
+            out=min(out,
+            helper(v,dp,c-1,i,grid.size()) );
+        }
+        return out;
     }
 };
