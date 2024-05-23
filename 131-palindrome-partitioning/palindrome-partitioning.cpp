@@ -11,7 +11,7 @@ public:
         }
 
         curr+=s[idx];
-        string temp=curr;
+        string temp=curr,t2=curr;
         reverse(temp.begin(),temp.end());
 
         if(curr==temp){
@@ -20,9 +20,8 @@ public:
             recur(s,idx+1,n,v);
             v.pop_back();
         }
-        reverse(temp.begin(),temp.end());
 
-        recur(s,idx+1,temp,v);
+        recur(s,idx+1,t2,v);
 
         return ;
 
