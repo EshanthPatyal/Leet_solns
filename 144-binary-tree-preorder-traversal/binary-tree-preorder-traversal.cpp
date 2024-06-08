@@ -28,15 +28,15 @@ public:
         if(!root)return {};
         while(!st.empty()){
             auto t=st.top();
-            // st.pop();
-                v.push_back(t->val);
-            // else{
                 st.pop();
+            // st.pop();
+            // else{
                 if(t->right)st.push(t->right);
             // }
                 if(t->left){
                     st.push(t->left);
                 }            
+                v.push_back(t->val);
         }
         return v;     
     }
