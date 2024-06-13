@@ -1,7 +1,7 @@
 class Solution {
 public:
 int out=0;
-    void dfs(map<int,vector<int>>&adj,int node,vector<int>& vis){
+    void dfs(vector<vector<int>>&adj,int node,vector<int>& vis){
         if(vis[node])return;
         vis[node]=1;
         out++;
@@ -11,11 +11,11 @@ int out=0;
         return ;
     }
     int reachableNodes(int n, vector<vector<int>>& edges, vector<int>& r) {
-        set<int> s;
+        unordered_set<int> s;
         for(auto it:r){
             s.insert(it);
         }
-        map<int,vector<int>> adj;
+        vector<vector<int>> adj(n);
         for(auto it:edges){
             if(s.count(it[0])==0 && s.count(it[1])==0){
                 adj[it[0]].push_back(it[1]);
