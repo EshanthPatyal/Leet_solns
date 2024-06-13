@@ -11,38 +11,33 @@
  */
 class Solution {
 public:
-    int out=0;
-    bool check(map<int,int> &mp){
+    bool check(map<int,int>& mp){
         int l=0;
         for(auto it:mp){
-            if(it.second%2==1){
-                l++;
-            }
+            if(it.second%2==1)l++;
         }
         if(l>1)return 0;
         return 1;
     }
-    void dfs(TreeNode*root,map<int,int>& mp){
-        if(root==NULL){
-            return;
-        }
-        if(!root->left && !root->right){
-            mp[root->val]++;
+    int o=0;
+    void dfs(map<int,int>& mp,TreeNode* r){
+        if(!r)return;
+        if(r->left==NULL && r->right==NULL){
+            mp[r->val]++;
             if(check(mp)){
-                out++;
+                o++;
             }
-            mp[root->val]--;
+            mp[r->val]--;
         }
-        mp[root->val]++;
-
-        dfs(root->left,mp);
-        dfs(root->right,mp);
-        mp[root->val]--;
-
+        mp[r->val]++;
+        dfs(mp,r->left);
+        dfs(mp,r->right);
+        mp[r->val]--;
+        return;
     }
     int pseudoPalindromicPaths (TreeNode* root) {
-        map<int,int>mp;
-        dfs(root,mp);
-        return out;
+        map<int,int> mp;
+        dfs(mp,root);
+        return o;
     }
 };
