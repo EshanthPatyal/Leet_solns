@@ -43,61 +43,43 @@ struct segtree{
         segtree st;
         int n=nums.size();
         st.init(nums.size());
-        st.set(0,0);
-        st.set(n-1,0);
         for(int i=1;i<nums.size()-1;i++){
             if(nums[i]>nums[i-1] && nums[i]>nums[i+1]){
-                // cout<<i<<endl;
                 st.set(i,1);
             }
         }
         vector<int> ret;
         for(int i=0;i<q.size();i++){
-        // for(auto it:st.sums){
-        //     cout<<it<<" ";
-        // }
-        // cout<<endl;
             if(q[i][0]==1){
-                // if(q[i][2]-q[i][1]<3)
                 ret.push_back(st.sum(q[i][1]+1,q[i][2]));
             }
             else{
                 int idx=q[i][1];
-                // if(nums[idx]==q[i][2])continue;
                 nums[idx]=q[i][2];
                 if(idx>0 && idx<n-1 ){
-                    // cout<<nums[idx]<<" "<<nums[idx-1]<<nums[idx+1]<<endl;
                     if(nums[idx]>nums[idx-1] && nums[idx]>nums[idx+1]){
                         st.set(idx,1);
-                        // cout<<"A"<<endl;
                     }
                     else{
-                         st.set(idx,0);
-                        // cout<<"B"<<endl;
-                         
+                         st.set(idx,0);  
                     }
                 }
                 if(idx>1){
                     if(nums[idx-1]>nums[idx-2] && nums[idx-1]>nums[idx]){
                         st.set(idx-1,1);
-                        // cout<<"C"<<endl;
                     }
                     else {
                         st.set(idx-1,0);
-                        // cout<<"D"<<endl;
                     }
                 }
                 if(idx<n-2){
                     if(nums[idx+1]>nums[idx] && nums[idx+1]>nums[idx+2]){
                         st.set(idx+1,1);
-                        // cout<<"E"<<endl;
                     }
                     else {
                         st.set(idx+1,0);
-                        // cout<<"F"<<endl;
                     }
                 }
-                // st.set(q[i][1],q[i][2]);
             }
         }
         return ret;
