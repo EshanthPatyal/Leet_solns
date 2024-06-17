@@ -29,7 +29,7 @@ struct segtree{
     }
 
     int sum(int lx,int rx,int x,int l,int r){
-        if(l==r || rx<=l || r<=lx)return 0;
+        if(rx<=l || r<=lx)return 0;
         if(lx<=l && rx>=r)return sums[x];
         int m=(l+r)/2;
         return sum(lx,rx,2*x+1,l,m)+sum(lx,rx,2*x+2,m,r);
@@ -57,29 +57,18 @@ struct segtree{
                 int idx=q[i][1];
                 nums[idx]=q[i][2];
                 if(idx>0 && idx<n-1 ){
-                    if(nums[idx]>nums[idx-1] && nums[idx]>nums[idx+1]){
-                        st.set(idx,1);
-                    }
-                    else{
-                         st.set(idx,0);  
-                    }
+                    if(nums[idx]>nums[idx-1] && nums[idx]>nums[idx+1])st.set(idx,1);
+                    else st.set(idx,0);
                 }
                 if(idx>1){
-                    if(nums[idx-1]>nums[idx-2] && nums[idx-1]>nums[idx]){
-                        st.set(idx-1,1);
-                    }
-                    else {
-                        st.set(idx-1,0);
-                    }
+                    if(nums[idx-1]>nums[idx-2] && nums[idx-1]>nums[idx])st.set(idx-1,1);
+                    else st.set(idx-1,0);
                 }
                 if(idx<n-2){
-                    if(nums[idx+1]>nums[idx] && nums[idx+1]>nums[idx+2]){
-                        st.set(idx+1,1);
-                    }
-                    else {
-                        st.set(idx+1,0);
-                    }
+                    if(nums[idx+1]>nums[idx] && nums[idx+1]>nums[idx+2])st.set(idx+1,1);
+                    else st.set(idx+1,0);
                 }
+                // st.set(q[i][1],q[i][2]);
             }
         }
         return ret;
