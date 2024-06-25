@@ -19,12 +19,13 @@ public:
     }
     void bfs(vector<int>& temp,vector<int>&in,TreeNode*r){
         if(!r)return;
-        int i=0;
-        for(;i<in.size();i++){
-            if(r->val==in[i]){
-                break;
-            }
-        }
+        int i=lower_bound(in.begin(),in.end(),r->val)-in.begin();
+
+        // for(;i<in.size();i++){
+        //     if(r->val==in[i]){
+        //         break;
+        //     }
+        // }
         r->val+=temp[i+1];
         bfs(temp,in,r->left);
         bfs(temp,in,r->right);
