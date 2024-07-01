@@ -25,12 +25,12 @@ public:
             adj[it[0]].push_back(it[1]);
             indegree[it[1]]++;
         }
-        for (int i = 0; i < n; i++) {
-            if (vis[i] == 0) {
-                bool a=cycle(adj,i,vis);
-                if(a==false)return -1;
-            }
-        }
+        // for (int i = 0; i < n; i++) {
+        //     if (vis[i] == 0) {
+        //         bool a=cycle(adj,i,vis);
+        //         if(a==false)return -1;
+        //     }
+        // }
         queue<int> q;
         for(int i=0;i<n;i++){
             if(indegree[i]==0){
@@ -39,7 +39,9 @@ public:
             }
         }
         int ret=0;
+        int count=0;
         while(!q.empty()){
+            count++;
             int node=q.front();
             q.pop();
             int curmax=0;
@@ -55,6 +57,7 @@ public:
                 if(indegree[it]==0)q.push(it);
             }
         }
+        if(count<n)return -1;
         return ret;
 
         // return 0;
