@@ -1,25 +1,21 @@
 class Solution {
 public:
-    int f(int i,int j,int m,int n,vector<vector<int>>& dp, vector<vector<int>>&v){
-        if(i==m-1 && j==n-1){
-            return v[i][j];
+    int minPathSum(vector<vector<int>>& grid) {
+        int m=grid.size();
+        int n=grid[0].size();
+        vector<vector<int>> dp(m,vector<int> (n,0));
+        dp[0][0]=grid[0][0];
+        for(int i=1;i<m;i++){
+            dp[i][0]=dp[i-1][0]+grid[i][0];
         }
-        if(i>=m || j>=n){
-            return 1000000;
+        for(int i=1;i<n;i++){
+            dp[0][i]=dp[0][i-1]+grid[0][i];
         }
-        if(dp[i][j]!=INT_MAX){
-            return dp[i][j];
+        for(int i=1;i<m;i++){
+            for(int j=1;j<n;j++){
+                dp[i][j]=grid[i][j]+min(dp[i-1][j],dp[i][j-1]);
+            }
         }
-
-        int left=v[i][j]+f(i+1,j,m,n,dp,v);
-        int right=v[i][j]+f(i,j+1,m,n,dp,v);
-        return dp[i][j]=min(dp[i][j],min(right,left));
-
-    }
-    int minPathSum(vector<vector<int>>& v) {
-        int m=v.size();
-        int n=v[0].size();
-        vector<vector<int>> dp(m,vector<int> (n,INT_MAX));
-        return f(0,0,m,n,dp,v);
+        return dp[m-1][n-1];
     }
 };
