@@ -23,20 +23,18 @@ public:
        vector<vector<int>> dp(coins.size()+1,vector<int>(amount+1,0));
         // int a= f(coins.size()-1,amount,coins,dp);
         int n=coins.size();
-        for(int i=0;i<=n;i++){
-            dp[i][0]=1;
-        }
+        // for(int i=0;i<=n;i++){
+        //     dp[i][0]=1;
+        // }
+        dp[0][0]=1;
         for(int i=1;i<=n;i++){
-            for(int k=1;k<=amount;k++){
+            for(int k=0;k<=amount;k++){
                 dp[i][k]=dp[i-1][k];
-                int l=k;
-                while(l>=coins[i-1]){
-                    // dp[i][k]=(dp[i][k]+(k/coins[i-1])+dp[i-1][k-coins[i-1]]);
-                    l-=coins[i-1];
-                    dp[i][k]+=dp[i-1][l];
-                }
+                if(k>=coins[i-1]){
+                    dp[i][k]+=dp[i][k-coins[i-1]];
+                }                
             }
-        }
+        } 
         int a=dp[n][amount]; 
         return a;        
     }
