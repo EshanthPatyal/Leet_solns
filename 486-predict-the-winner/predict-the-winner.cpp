@@ -22,8 +22,18 @@ long long recur(vector<vector<long long>>&dp,vector<int>&v,int i,int j,int f){
     // return a;
 
     bool predictTheWinner(vector<int>& nums) {
-vector<vector<long long>> dp(100,vector<long long>(100,LLONG_MAX));
-
-        return (recur(dp,nums,0,nums.size()-1,1)>=0);
+    vector<vector<long long>> dp(100,vector<long long>(100,LLONG_MAX));
+    int n=nums.size();
+        for(int i=n-1;i>=0;i--){
+            for(int j=i;j<n;j++){
+                if(i==j){
+                    dp[i][j]=nums[i];
+                }
+                else{
+                    dp[i][j]=max(nums[i]-dp[i+1][j],nums[j]-dp[i][j-1]);
+                }
+            }
+        }
+        return dp[0][n-1]>=0;
     }
 };
