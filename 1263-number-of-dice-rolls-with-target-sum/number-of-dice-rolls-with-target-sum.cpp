@@ -6,8 +6,11 @@ public:
         dp[0][0]=1;
         for(int i=1;i<=n;i++){
             for(int j=1;j<=target;j++){
-                for(int k=1;k<=min(j,m);k++){
-                    dp[i][j]=(dp[i][j] + (dp[i-1][j-k] %mod)) %mod;
+                for(int k=1;k<=m;k++){
+                    if(j>=k){
+                        dp[i][j]+=dp[i-1][j-k];
+                        dp[i][j]%=mod;
+                    }
                 }
             }
         }
