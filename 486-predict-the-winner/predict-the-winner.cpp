@@ -22,7 +22,7 @@ long long recur(vector<vector<long long>>&dp,vector<int>&v,int i,int j,int f){
     // return a;
 
     bool predictTheWinner(vector<int>& nums) {
-    vector<vector<long long>> dp(22,vector<long long>(22,LLONG_MAX));
+    vector<vector<int>> dp(22,vector<int>(22,LLONG_MAX));
     int n=nums.size();
         for(int i=n-1;i>=0;i--){
             for(int j=i;j<n;j++){
