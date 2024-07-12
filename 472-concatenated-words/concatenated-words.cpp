@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool dfs(string s,vector<vector<string>>&v,int i,vector<int>&dp){
+    bool dfs(string& s,vector<vector<string>>&v,int i,vector<int>&dp){
         if(i>=s.length())return 1;
         if(dp[i]!=-1)return dp[i]==1;
         int ne=s[i]-'a';
