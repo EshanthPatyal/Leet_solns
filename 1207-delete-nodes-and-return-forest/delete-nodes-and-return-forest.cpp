@@ -41,7 +41,6 @@ public:
             int a=q.size();
             while(a--){
                 auto now=q.front();
-                cout<<q.front()->val<<" ";
                 auto temp=dfs(now,curr);
                 if(now==temp){
                     if(temp->left)q.push(temp->left);
@@ -60,7 +59,6 @@ public:
                     q.push(now);                 
                 }
             }
-            cout<<endl;
             i++;
         }
         vector<TreeNode*>ret;
