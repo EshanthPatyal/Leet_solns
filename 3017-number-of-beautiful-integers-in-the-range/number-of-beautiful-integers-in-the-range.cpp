@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int dp[12][2][2][11][11][1000];
+    int dp[12][2][2][11][11][30];
     int recur(int idx,bool tight,int sum,int even,int odd,bool zero,string s,int k){
         if(idx==s.length()){
             if(sum%k==0 && even==odd)return 1;
@@ -25,7 +25,7 @@ public:
       
             int ad=i*pow(10,s.length()-idx-1);
             ad=ad%k;
-            ans+=recur(idx+1,ntight,(sum+ad),neven,nodd,nzero,s,k);
+            ans+=recur(idx+1,ntight,(sum+ad)%k,neven,nodd,nzero,s,k);
         }
         return dp[idx][tight][zero][even][odd][sum]=ans;
         
