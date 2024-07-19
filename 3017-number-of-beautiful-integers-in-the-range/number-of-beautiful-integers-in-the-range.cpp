@@ -20,8 +20,9 @@ public:
 
             if(tight&&(i==cur))ntight=true;
             if((i==0) && zero)nzero=true;
+            
             if((i!=0 || !zero) && i%2==0){neven++;}
-            else if((i!=0 || !zero) && i%2==1){nodd++;}
+            else if(i%2==1){nodd++;}
       
             int ad=i*pow(10,s.length()-idx-1);
             ad=ad%k;
