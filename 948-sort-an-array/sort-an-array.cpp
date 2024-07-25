@@ -26,7 +26,6 @@ public:
     void mergesort(vector<int>&v,int beg,int end,vector<int>&temp){
         if (beg >= end)
             return;
-            cout<<beg<<" "<<end<<endl;
         int mid = beg + (end - beg) / 2;
         mergesort(v, beg, mid, temp);
         mergesort(v, mid+1, end, temp);
