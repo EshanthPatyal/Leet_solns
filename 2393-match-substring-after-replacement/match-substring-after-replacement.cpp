@@ -1,6 +1,6 @@
 class Solution {
 public:
-        map<char,map<char,char>>mp;
+        unordered_map<char,map<char,char>>mp;
     bool f(string s,int idx,string s2){
         if(idx+s2.size()>s.size())return false;
         int j=0;
