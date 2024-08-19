@@ -9,9 +9,8 @@ public:
         while(!pq.empty()){
             auto u = pq.top();
             pq.pop();
-            if(vis[u.second])continue;
             for(auto v : adj[u.second]){
-                if(u.first + v.second < dist[v.first]){
+                if(!vis[v.first] && u.first + v.second < dist[v.first]){
                     dist[v.first] = u.first + v.second;
                     pq.push({dist[v.first],v.first});
                 }
