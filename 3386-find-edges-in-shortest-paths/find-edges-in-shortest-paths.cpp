@@ -2,18 +2,21 @@ class Solution {
 public:
     vector<long long> djik(int n , int s ,vector<vector<pair<int,int>>> &adj){
         vector<long long> dist(n,1e14);
+        vector<int> vis(n,0);
         dist[s] = 0;
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
         pq.push({0,s});
         while(!pq.empty()){
             auto u = pq.top();
             pq.pop();
+            if(vis[u.second])continue;
             for(auto v : adj[u.second]){
                 if(u.first + v.second < dist[v.first]){
                     dist[v.first] = u.first + v.second;
                     pq.push({dist[v.first],v.first});
                 }
             }
+            vis[u.second]=1;
         }
         return dist;
     }        
