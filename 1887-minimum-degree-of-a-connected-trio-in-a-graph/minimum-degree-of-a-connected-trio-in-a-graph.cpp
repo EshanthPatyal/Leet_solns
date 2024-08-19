@@ -3,9 +3,7 @@ public:
     int minTrioDegree(int n, vector<vector<int>>& edges) {
         vector<int> degree(n+1,0);
         vector<vector<int>> vec(n+1,vector<int>(n+1,0));
-        map<int,vector<int>> adj;
-        set<pair<int,int>> s;
-        
+        unordered_map<int,vector<int>> adj;        
         for(auto it:edges){
             adj[it[0]].push_back(it[1]);
             adj[it[1]].push_back(it[0]);
