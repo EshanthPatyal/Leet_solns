@@ -21,18 +21,16 @@ public:
             int curr=pq.top();
             int count=mp[curr];
             if(count<=k){
-                mp.erase(curr);
+                mp.erase(curr--);
                 pq.pop();
-                curr--;
                 k-=count;
                 if(mp.find(curr)==mp.end())pq.push(curr);
                 mp[curr]+=count;
             }
             else{
-                curr--;
-                mp[curr]+=k;
+                mp[--curr]+=k;
                 if(mp.find(curr)==mp.end())pq.push(curr);
-                mp[++curr]=count-k;
+                mp[++curr]-=k;
                 k=0;
             }
         }
