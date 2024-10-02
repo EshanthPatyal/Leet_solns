@@ -6,7 +6,7 @@ public:
             v.insert(it);
         }
         int i=1;
-        map<int,int> mp;
+        unordered_map<int,int> mp;
         for(auto it:v){
             mp[it]=i;
             i++;
